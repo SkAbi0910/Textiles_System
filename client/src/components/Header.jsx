@@ -63,7 +63,7 @@ const Header = () => {
           </>
           <div onClick={() => navigate('/cart')} className='relative flex cursor-pointer'>
             <FaShoppingBasket className='text-xl' />
-            <label className='ml-2'>{getCartCount}</label>
+            <label className='ml-2'>{getCartCount()}</label>
             {/* {cartCount > 0 && (
             <span className='absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cartCount}</span>
           )} */}
@@ -76,8 +76,9 @@ const Header = () => {
               </div>
 
             ) : (
-              <button onClick={() => setShowUserLogin(true)} className="relative z-50 flex items-center gap-1">
-                <RiUserLine className='text-xl' />Login
+              <button onClick={() => navigate('/login')} className="relative z-50 flex items-center gap-1 cursor-pointer">
+                <RiUserLine className='text-xl' />
+                <span className="underline">Login</span>
               </button>
             )}
 

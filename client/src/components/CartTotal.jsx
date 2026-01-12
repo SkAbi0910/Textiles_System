@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 
 const CartTotal = ({ method, setMethod }) => {
-  const total = subtotal + shipping + tax;
+
 
   const {currency,getCartAmount,getCartCount,delivery_charges} = useContext(ShopContext)
   const location = useLocation()
@@ -24,8 +24,8 @@ const CartTotal = ({ method, setMethod }) => {
       <div className="space-y-4 text-gray-700 text-sm">
         <div className="flex justify-between">
           <h3>Payment</h3>
-          <div onClick={() => setMethod('COD')} className={`${method === 'COD' ? 'bg-black' : 'bg-white'} cursor-pointer text-xs` }>Cash On Delivery{currency}{subtotal.toFixed(2)}</div>
-          <div onClick={() => setMethod('Stripe')} className={`${method === 'Stripe' ? 'bg-black' : 'bg-white'} cursor-pointer text-xs` }>Stripe{currency}{subtotal.toFixed(2)}</div>
+          <div onClick={() => setMethod('COD')} className={`${method === 'COD' ? 'bg-black' : 'bg-white'} cursor-pointer text-xs` }>Cash On Delivery</div>
+          <div onClick={() => setMethod('Stripe')} className={`${method === 'Stripe' ? 'bg-black' : 'bg-white'} cursor-pointer text-xs` }>Stripe</div>
         </div>
         
        
@@ -33,27 +33,32 @@ const CartTotal = ({ method, setMethod }) => {
         
       </div>
   )}
-  <div className="flex justify-between">
-   <div className="flex justify-between">
-          <h4>Price</h4>
-          <span>{currency}{getCartAmount()}</span>
-        </div>
-        <div>
-          <h4>Shipping Fee</h4>
-          <span className='text-green-600 font-semibold'>{getCartAmount() === 0 ? 'Rs.00.00' : `${currency}${delivery_charges}.00`}
-          </span></div>
-          <div>
-          <h4>Tax</h4>
-          <span className= 'text-green-600 font-semibold'>{currency}{(getCartAmount() *2)/100}
-            
-          </span></div>
-<div className="flex justify-between text-lg font-bold text-gray-900">
-          <span>Total</span>
-          <span>{currency}{getCartAmount() === 0 ? '0.00': getCartAmount() + delivery_charges +(getCartAmount() *2 )/100}</span>
-        </div>
-        </div>
+  <div className="space-y-3">
+    <div className="flex justify-between">
+      <h4>Price</h4>
+      <span>{currency}{getCartAmount()}</span>
+    </div>
+    <div className="flex justify-between">
+      <h4>Shipping Fee</h4>
+      <span className='text-green-600 font-semibold'>
+        {getCartAmount() === 0 ? `${currency}0.00` : `${currency}${delivery_charges}.00`}
+      </span>
+    </div>
+    <div className="flex justify-between">
+      <h4>Tax</h4>
+      <span className='text-green-600 font-semibold'>
+        {currency}{(getCartAmount() * 2) / 100}
+      </span>
+    </div>
+    <div className="flex justify-between text-lg font-bold text-gray-900">
+      <span>Total</span>
+      <span>
+        {currency}{getCartAmount() === 0 ? '0.00' : getCartAmount() + delivery_charges + (getCartAmount() * 2) / 100}
+      </span>
+    </div>
+  </div>
       <Link
-        to="/placeorder"
+        to="/place_orders"
         className="block mt-6 text-center bg-tertiary text-white py-3 rounded-xl font-semibold hover:opacity-90 transition"
       >
         Proceed to Checkout

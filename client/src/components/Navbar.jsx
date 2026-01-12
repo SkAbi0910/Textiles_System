@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 
-const Navbar = ({ containerStyles , setDropdownOpen }) => {
+const Navbar = ({ containerStyles , setmenudownOpen }) => {
 
     const navLinks =[
         {path :"/", title : "Home"},
@@ -16,21 +16,21 @@ const Navbar = ({ containerStyles , setDropdownOpen }) => {
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setDropdownOpen(false);
+                setmenudownOpen(false);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, []);
+    }, [setmenudownOpen]);
 
     
 
     return (
         <nav className={`${containerStyles}`}>
 {navLinks.map((link) => (
-    <NavLink onClick={() => setDropdownOpen(false)}
+    <NavLink onClick={() => setmenudownOpen(false)}
     key={link.title} to={link.path} className={({ isActive }) =>
         `font-medium ${isActive ? " active-link text-blue-600" : "text-gray-700 hover:text-blue-600"}`
     }>

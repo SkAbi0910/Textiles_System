@@ -33,14 +33,14 @@ const ShopContextProvider = ({ children }) => {
         fetchProducts()
     }, []);
 
-    const getCartCount = async() => {
-      let count =0 
-      for(const itemId in cartItems){
-        for(const size in cartItems[itemId]){
-          count+=cartItems[itemId][size]
+    const getCartCount = () => {
+      let count = 0;
+      for (const itemId in cartItems) {
+        for (const size in cartItems[itemId]) {
+          count += cartItems[itemId][size];
         }
       }
-      return count
+      return count;
     }
 
 const updateQuantity = async(itemId,size,quantity) => {
@@ -50,16 +50,16 @@ const updateQuantity = async(itemId,size,quantity) => {
  toast.success('Cart Updated')
 }
 
-    const getCartAmount = async() =>{
-      let total =0
-      for(const itemId in cartItems){
-        const product =products.find((p) => p._id === itemId)
-        if(!product) continue
-        for(const size in cartItems[itemId]){
-          total+=product.offerPrice * cartItems[itemId][size]
+    const getCartAmount = () => {
+      let total = 0;
+      for (const itemId in cartItems) {
+        const product = products.find((p) => p._id === itemId);
+        if (!product) continue;
+        for (const size in cartItems[itemId]) {
+          total += product.offerPrice * cartItems[itemId][size];
         }
       }
-      return total
+      return total;
     }
 
     const value =

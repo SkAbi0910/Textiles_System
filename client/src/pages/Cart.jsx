@@ -19,7 +19,7 @@ const Cart = () => {
     const decrement = (id, size) => {
         const currQuantity = cartItems[id][size]
         if (currQuantity > 1) {
-            updateQuantity(id, size, currQuantitiy - 1)
+            updateQuantity(id, size, currQuantity - 1)
         }
     }
 
