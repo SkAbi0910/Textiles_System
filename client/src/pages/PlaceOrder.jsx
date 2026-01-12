@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaMapMarkerAlt, FaCreditCard, FaMoneyBillWave } from "react-icons/fa";
+import { ShopContext } from "../context/ShopContext";
 
 const PlaceOrder = () => {
+
+  const {navigate} =useContext(ShopContext)
   return (
     <div className="bg-gray-50 min-h-screen py-16 px-4 md:px-12 lg:px-20">
+    {/* <form>
+    <div className="bg-gray-50 min-h-screen py-16 px-4 md:px-12 lg:px-20">
 
-      {/* Page Title */}
+ 
       <div className="text-center mb-14">
-        <h2 className="text-4xl font-extrabold text-gray-900">
-          Place <span className="text-tertiary">Order</span>
-        </h2>
+       <Title text="Shop by Categories" title1={"Place"} title2={" Order"} titleStyle={"text-3xl font-extrabold text-gray-900 mb-10 text-center"} paraStyle={"  text-gray-600 mb-16 text-center"}
+                />
         <p className="text-gray-600 mt-2">
           Complete your purchase securely
         </p>
-      </div>
+     
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
 
-        {/* LEFT – SHIPPING & PAYMENT */}
+    
         <div className="lg:col-span-2 space-y-8">
 
-          {/* Shipping Address */}
+    
           <div className="bg-white rounded-2xl shadow-sm p-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-3">
               <FaMapMarkerAlt className="text-tertiary" />
@@ -36,7 +40,7 @@ const PlaceOrder = () => {
             </div>
           </div>
 
-          {/* Payment Method */}
+        
           <div className="bg-white rounded-2xl shadow-sm p-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-3">
               <FaCreditCard className="text-tertiary" />
@@ -59,7 +63,6 @@ const PlaceOrder = () => {
           </div>
         </div>
 
-        {/* RIGHT – ORDER SUMMARY */}
         <div className="bg-white rounded-2xl shadow-sm p-8 h-fit">
           <h3 className="text-xl font-semibold mb-6">Order Summary</h3>
 
@@ -92,6 +95,7 @@ const PlaceOrder = () => {
           </p>
         </div>
       </div>
+      </form> */}
     </div>
   );
 };

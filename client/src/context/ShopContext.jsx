@@ -13,6 +13,7 @@ const ShopContextProvider = ({ children }) => {
     const [searchQuery , setSearchQuery] = useState("");
     const [showUserLogin , setShowUserLogin] = useState ("")
     const [cartItems, setCartItems] = useState({})
+    const delivery_charges = 300;
 
     const fetchProducts = async () => {
         setProducts(dummyProducts);
@@ -46,6 +47,7 @@ const updateQuantity = async(itemId,size,quantity) => {
  let cartData = structuredClone(cartItems)
  cartData[itemId][size] = quantity
  setCartItems(cartData)
+ toast.success('Cart Updated')
 }
 
     const getCartAmount = async() =>{
@@ -75,6 +77,7 @@ const updateQuantity = async(itemId,size,quantity) => {
         getCartCount,
         updateQuantity,
         getCartAmount,
+        delivery_charges,
 
       };
   return (
