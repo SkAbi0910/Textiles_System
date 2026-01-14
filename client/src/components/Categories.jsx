@@ -16,7 +16,7 @@ const Categories = () => {
         <h2 className="text-3xl font-extrabold text-gray-900 mb-10 text-center">Shop by Categories</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {categories.map((category) => (
-            <div onClick={() => navigate(`/dresscollection/${category.name.toLocaleLowerCase()}`)} key={category.name} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            <div onClick={() => navigate(`/dresscollection/${category.name.toLowerCase()}`)} key={category.name} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
               <img src={category.image} alt={category.name} className="w-full h-48 object-cover" /> 
               <div className="p-4">
                 <h3 className="text-lg font-semibold mb-2">{category.name}</h3>

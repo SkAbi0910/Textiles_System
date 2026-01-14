@@ -192,3 +192,58 @@ export const blogs = [
     image: cat3,
   },
 ];
+export const dummyOrders = [
+  {
+    _id: "ORD123456",
+    isPaid: true,
+    paymentMethod: "Credit Card",
+    status: "Delivered",
+    amount: 4200,
+    createdAt: "2026-01-10T10:30:00Z",
+    items: [
+      {
+        product: {
+          name: "Elegant Evening Gown",
+          image: [
+            "https://images.unsplash.com/photo-1520975916090-3105956dac38"
+          ],
+          offerPrice: 3500,
+          quantity: 1,
+          size: "M"
+        }
+      },
+      {
+        product: {
+          name: "Casual Summer Dress",
+          image: [
+            "https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+          ],
+          offerPrice: 700,
+          quantity: 1,
+          size: "S"
+        }
+      }
+    ]
+  },
+  {
+    _id: "ORD789012",
+    isPaid: false,
+    paymentMethod: "Cash on Delivery",
+    status: "Processing",
+    amount: 2600,
+    createdAt: "2026-01-05T14:15:00Z",
+    items: [
+      {
+        product: {
+          name: "Floral Maxi Dress",
+          image: [
+            "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c"
+          ],
+          offerPrice: 2600,
+          quantity: 1,
+          size: "L"
+        }
+      }
+    ]
+  }
+];
