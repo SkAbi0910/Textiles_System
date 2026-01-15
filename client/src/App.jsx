@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { Route,Routes, useLocation } from 'react-router-dom'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 import Login from './pages/Login'
@@ -19,7 +20,9 @@ const isAdminPath = localtion.pathname.include('admin');
   
   return (
     <main className='overflow-hidden text-tertiary'>
-      <Header />
+    {showUserLogin && <Login/>}
+      <Header  />
+      <Toaster position='top-left'/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="cart" element={<Cart />} />
