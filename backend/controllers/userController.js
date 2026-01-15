@@ -70,3 +70,36 @@ export const userLogin = async(req,res)=>{
         return res.status(500).json({ message: "Server Error" });
     }
 }
+
+
+export const isAuth = async(req,res)=>{
+
+    try{
+        const {userId} = req;
+        const user = await User.findById(userId).select("-password");
+        if(!user){
+            return res.status(404).json({message:"User not found"});
+        }
+        return res.status(200).json({user});
+
+    }
+    
+    catch(err){
+
+
+        return res.status(500).json({ message: "Server Error" });
+    }
+
+}
+
+
+export const userLogout = async(req,res)=>{
+
+    try{
+        res.clearCookie("token", { httpOnly: true, secure: process.env.APP_ENV === "production", sameSite: process.env.APP_ENV === "production" ? "none" : "strict" });
+        return res.status(200).json({ message: "Logout successful" });
+    }
+    catch(err){
+        return res.status(500).json({ message: "Server Error" });
+    }
+}
