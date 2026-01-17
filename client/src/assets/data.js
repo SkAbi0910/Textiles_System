@@ -200,31 +200,44 @@ export const dummyOrders = [
     status: "Delivered",
     amount: 4200,
     createdAt: "2026-01-10T10:30:00Z",
+
+    address: {
+      firstName: "Abinaya",
+      lastName: " S",
+      phone: "0771234567",
+      street: "No 12, Main Street",
+      city: "Jaffna",
+      state: "Northern Province",
+      country: "Sri Lanka",
+      zipcode: "40000"
+    },
+
     items: [
       {
+        quantity: 1,
+        size: "M",
         product: {
           name: "Elegant Evening Gown",
           image: [
             "https://images.unsplash.com/photo-1520975916090-3105956dac38"
           ],
-          offerPrice: 3500,
-          quantity: 1,
-          size: "M"
+          offerPrice: 3500
         }
       },
       {
+        quantity: 1,
+        size: "S",
         product: {
           name: "Casual Summer Dress",
           image: [
             "https://images.unsplash.com/photo-1523275335684-37898b6baf30"
           ],
-          offerPrice: 700,
-          quantity: 1,
-          size: "S"
+          offerPrice: 700
         }
       }
     ]
   },
+
   {
     _id: "ORD789012",
     isPaid: false,
@@ -232,18 +245,31 @@ export const dummyOrders = [
     status: "Processing",
     amount: 2600,
     createdAt: "2026-01-05T14:15:00Z",
+
+    address: {
+      firstName: "Kavitha",
+      lastName: " R",
+      phone: "0719876543",
+      street: "45 Temple Road",
+      city: "Colombo",
+      state: "Western Province",
+      country: "Sri Lanka",
+      zipcode: "01000"
+    },
+
     items: [
       {
+        quantity: 1,
+        size: "L",
         product: {
           name: "Floral Maxi Dress",
           image: [
             "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c"
           ],
-          offerPrice: 2600,
-          quantity: 1,
-          size: "L"
+          offerPrice: 2600
         }
       }
     ]
   }
 ];
+

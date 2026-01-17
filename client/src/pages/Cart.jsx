@@ -8,10 +8,7 @@ import Title from "../components/Title";
 const Cart = () => {
 
     const { navigate, products, currency, cartItems, updateQuantity } = useContext(ShopContext)
-
     const [cartData, setCartData] = useState([])
-
-
     const increment = (id, size) => {
         const currQuantity = cartItems[id][size]
         updateQuantity(id, size, currQuantity + 1)
@@ -22,9 +19,6 @@ const Cart = () => {
             updateQuantity(id, size, currQuantity - 1)
         }
     }
-
-
-
     useEffect(() => {
         if (products.length > 0) {
             const tempData = []
@@ -65,26 +59,18 @@ const Cart = () => {
                         const quantity = cartItems[item._id][item.size]
                         return (
                             <div key={i} className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-
-
-
-
                                 <div className="bg-white rounded-2xl shadow-sm p-6 flex gap-6 items-center">
                                     <img
                                         src={product.image[0]}
                                         alt="Dress"
                                         className="w-24 h-28 object-cover rounded-lg"
                                     />
-
-
                                     <div className="flex-1">
                                         <h4 className="font-semibold text-gray-900">
                                             {product.name}
                                         </h4>
                                         <p className="text-sm text-gray-500">{item.size}</p>
                                     </div>
-
-
                                     <div className="flex items-center gap-3 border rounded-lg px-3 py-2">
                                         <button onClick={() => decrement(item._id, item.size)} className="hover:text-tertiary">
                                             <FaMinus />
@@ -94,25 +80,15 @@ const Cart = () => {
                                             <FaPlus />
                                         </button>
                                     </div>
-
-
-
-
-
-
                                     <p className="font-semibold mt-2">{currency}{product.offerPrice * quantity}</p>
                                     <button onClick={() => updateQuantity(item._id, item.size, 0)}>
                                         <IoCloseCircleOutline />
                                     </button>
                                 </div>
                             </div>
-
-
-
                         );
                     })}
                 </div>
-
                 <div>
                     <div className="bg-white rounded-2xl shadow-sm p-8 h-fit">
                         <CartTotal />
@@ -122,16 +98,10 @@ const Cart = () => {
                         >
                             Proceed to Checkout
                         </button>
-
-
-
                     </div>
                 </div>
             </div>
         </div>
-
-
-
     ) : null;
 };
 

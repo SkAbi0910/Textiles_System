@@ -36,41 +36,37 @@ const Worthiness = () => {
     }
   ]
 
-
   return (
-      <section className="bg-gray-50 py-20">
+    <section className="bg-gray-50 py-20">
 
-        <Title
-          text="Quality, Comfort & Care"
-          title1={"Why We’re"}
-          title2={" Worth It"}
-          titleStyle="text-4xl font-extrabold text-gray-900 mb-6 text-center mt-20"
-          paraStyle="text-gray-600 mb-16 text-center max-w-2xl mx-auto"
-        />
-        <div className='max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {worthiness.map((worthiness, index) => (
-            <div key={index} className='bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 flex flex-col items-center text-center'>
-              <div className='flex mb-3'>
+      <Title
+        text="Quality, Comfort & Care"
+        title1={"Why We’re"}
+        title2={" Worth It"}
+        titleStyle="text-4xl font-extrabold text-gray-900 mb-6 text-center mt-20"
+        paraStyle="text-gray-600 mb-16 text-center max-w-2xl mx-auto"
+      />
+      <div className='max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+        {worthiness.map((worthiness, index) => (
+          <div key={index} className='bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 flex flex-col items-center text-center'>
+            <div className='flex mb-3'>
 
-                {[...Array(5)].map((_, i) => (
-                  <FaStar key={i} size={16} className='text-yellow-400 mx-0.5' />
-                ))}
-              </div>
-              <div>
-                <p className='text-gray-400 text-xs'>{worthiness.date}</p>
-              </div>
-              <p className='text-gray-600 mb-6 text-sm'>{worthiness.message}</p>
-              <div className='flex flex-col items-center'>
-                <img src={worthiness.image} alt={worthiness.name} className='w-16 h-16 rounded-full object-cover mb-2' />
-                <p className='font-semibold text-gray-900'>{worthiness.name}</p></div>
+              {[...Array(5)].map((_, i) => (
+                <FaStar key={i} size={16} className='text-yellow-400 mx-0.5' />
+              ))}
             </div>
-
-          )
-
-          )}
-
-        </div>
-      </section>
+            <div>
+              <p className='text-gray-400 text-xs'>{worthiness.date}</p>
+            </div>
+            <p className='text-gray-600 mb-6 text-sm'>{worthiness.message}</p>
+            <div className='flex flex-col items-center'>
+              <img src={worthiness.image} alt={worthiness.name} className='w-16 h-16 rounded-full object-cover mb-2' />
+              <p className='font-semibold text-gray-900'>{worthiness.name}</p></div>
+          </div>
+        )
+        )}
+      </div>
+    </section>
   )
 }
 
