@@ -14,7 +14,7 @@ const ShopContextProvider = ({ children }) => {
   const [showUserLogin, setShowUserLogin] = useState("")
   const [cartItems, setCartItems] = useState({})
   const delivery_charges = 300;
-  const [isAdmin, setIsAdmin] = useState([])
+  const [isAdmin, setIsAdmin] = useState(false)
 
   const fetchProducts = async () => {
     setProducts(dummyProducts);

@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -20,6 +20,8 @@ import DressDetails from './pages/DressDetails'
 import DressCategoryCollection from './pages/DressCategoryCollection'
 import Contact from './pages/Contact'
 import Sidebar from './components/admin/Sidebar'
+import Loading from './pages/Loading'
+import DashboardView from './components/admin/DashboardView'
 
 
 function App() {
@@ -41,16 +43,25 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/place-orders" element={<PlaceOrder />} />
         <Route path="/my_orders" element={<MyOrders />} />
+        <Route path="/loader" element={<Loading />} />
         <Route path="/dresscollection" element={<DressCollection />} />
         <Route path="/worthiness" element={<Worthiness />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/dresscollection/:category" element={<DressCategoryCollection />} />
         <Route path="/dresscollection/:category/:id" element={<DressDetails />} />
-        <Route path="/admin" element={isAdmin ? <Sidebar /> : <AdminLogin />} >
-          <Route index element={isAdmin ? <AddProduct /> : null} />
-          <Route path='list' element={<ListProduct />} />
-          <Route path='orders' element={<Orders />} />
+        <Route path="/admin">
+          <Route index element={<AdminLogin />} />
+
+          <Route
+            element={isAdmin ? <Sidebar /> : <Navigate to="/admin" />}
+          >
+            <Route path="dashboard" element={<DashboardView />} />
+            <Route path="addProduct" element={<AddProduct />} />
+            <Route path="list" element={<ListProduct />} />
+            <Route path="orders" element={<Orders />} />
+          </Route>
         </Route>
+
       </Routes>
       {!isAdminPath && <Footer />}
     </main>

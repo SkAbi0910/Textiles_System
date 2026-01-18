@@ -19,7 +19,7 @@ export default function AdminLogin() {
 
     if (isAdmin) {
 
-      navigate('/admin')
+      navigate('/admin/dashboard')
     }
   }, [isAdmin]);
 
@@ -41,18 +41,18 @@ export default function AdminLogin() {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             placeholder='Type here....'
-            className='border border-grey-200 rounded w-full p-2 mt-1 outline-tertiary'
+            className='border border-grey-200 rounded w-full p-2 mt-1 outline-black'
             required />
         </div>
 
         <div className='w-full'>
-          <p className='medium-14'>Email</p>
+          <p className='medium-14'>Password</p>
           <input
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             placeholder='Type here....'
-            className='border border-grey-200 rounded w-full p-2 mt-1 outline-tertiary'
+            className='border border-grey-200 rounded w-full p-2 mt-1 outline-black'
             required />
         </div>
 

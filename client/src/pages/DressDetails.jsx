@@ -60,7 +60,7 @@ const DressDetails = () => {
             </div>
             <div className="flex items-center gap-3 mb-4">
               <h3 className="text-2xl font-bold text-blue-600">{currency}{product.price}.00</h3>
-              <h4 className="text-gray-400 line-through">{currency}{product.price}.00</h4>
+              <h4 className="text-gray-400 line-through">{currency}{product.offerPrice}.00</h4>
             </div>
             <p className="text-gray-600 mb-6 leading-relaxed">{product.description}</p>
             <div className="mb-6">
