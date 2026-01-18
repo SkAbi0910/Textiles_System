@@ -1,5 +1,5 @@
 import React from 'react'
-import upload_icon from '../../assets/upload_icons.png'
+// import upload_icon from '../../assets/upload_icons.png'
 
 export default function AddProduct() {
 
@@ -147,7 +147,7 @@ export default function AddProduct() {
                       
                       />
 
-                      <img src = {files[index] ? URL.createObjectURL(files[index]) : upload_icon} alt="uploadArea" width={67} height={67} className='bg-white'/>
+                      {/* <img src = {files[index] ? URL.createObjectURL(files[index]) : upload_icon} alt="uploadArea" width={67} height={67} className='bg-white'/> */}
                      </label>
 
                   })

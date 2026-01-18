@@ -13,11 +13,9 @@ const Home = () => {
     <>
     <Hero/>
     <Categories/>
-    <Features/>
+    {/* <Features/> */}
     <FamousProducts/>
-    <div className='max-w-7xl mx-auto px-6'>
-      <img src={bannerImg} alt="Banner" className="w-full h-auto mt-10 mb-10"/>
-    </div>
+    
     <Blog/>
     </>
   )

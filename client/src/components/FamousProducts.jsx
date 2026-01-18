@@ -1,76 +1,69 @@
-import React, { useContext  , useEffect, useState } from 'react'
-import Title from './Title'
-import {Swiper , SwiperSlide} from 'swiper/react'
-import 'swiper/css'
-import { Autoplay } from 'swiper/modules'
-import { ShopContext } from '../context/ShopContext'
+// import React, { useContext, useEffect, useState } from 'react';
+// import Title from './Title';
+// import { ShopContext } from '../context/ShopContext';
+// import { useNavigate } from 'react-router-dom';
 
-const FamousProducts = () => {
+// const FamousProducts = () => {
+//   const [famousProducts, setFamousProducts] = useState([]);
+ 
+//   const navigate = useNavigate();
 
-  const [famousProducts, setFamousProducts] = useState([]);
-  const {products} = useContext(ShopContext);
+//   useEffect(() => {
+//     const data = products.filter((product) => product.isFamous);
+//     setFamousProducts(data); // show all famous products
+//   }, [products]);
 
-  useEffect(() => {
-    const data = products.filter((product) => product.isFamous);
-    setFamousProducts(data.slice(0, 4));
-    
-  }, [products]);
+//   return (
+//     <section className="bg-gray-50 py-5 sm:py-14">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         {/* Section Title */}
+//         <Title
+//           title1="Famous"
+//           title2=" Products"
+//           titleStyle="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center"
+//           paraStyle="text-gray-600 mb-12 text-center max-w-xl mx-auto"
+//           text="Discover our most popular and highly rated dresses that customers love."
+//         />
 
-  useEffect(() => {
-    console.log(famousProducts);
-  }, [famousProducts]);
+//         {/* Horizontal Scrollable Container */}
+//         <div className="flex space-x-4 overflow-x-auto py-2 scrollbar-none">
+//           {famousProducts.map((product) => (
+//             <div
+//               key={product._id}
+//               className="flex-shrink-0 w-64 flex flex-col items-center cursor-pointer"
+//               onClick={() => navigate(`/product/${product._id}`)}
+//             >
+//               {/* Image Card */}
+//               <div className="w-full h-70 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+//                 <img
+//                   src={product.image}
+//                   alt={product.name}
+//                   className="w-full h-48 object-cover"
+//                 />
+//               </div>
 
+//               {/* Product Name */}
+//               <h3 className="mt-3 text-lg sm:text-xl font-semibold text-center text-gray-900">
+//                 {product.name}
+//               </h3>
+
+//               {/* Product Price */}
+//               <span className="mt-1 text-blue-600 font-bold">${product.price}</span>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default FamousProducts;
+// // 
+
+import React from 'react'
+
+export default function FamousProducts() {
   return (
-    <section className="bg-gray-50 py-20">
-      <div className="max-w-7xl mx-auto px-6">
-       
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        <Title text="Discover our most popular and highly rated dresses that customers love." title1 ={"Famous"} title2={" Products"} titleStyle={"text-3xl font-extrabold text-gray-900 mb-10 text-center"} paraStyle={"  text-gray-600 mb-16 text-center"} />
-          {
-            <Swiper
-              slidesPerView={1}
-              spaceBetween={10}   
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-
-                },
-                768: {
-                  slidesPerView: 3,
-                  spaceBetween: 40, 
-                },
-                1024: {
-                  slidesPerView: 4,
-                  spaceBetween: 50,
-                },
-              }}
-              modules={[Autoplay]}
-              className="mySwiper"
-            >
-              {famousProducts.map((product) => (
-                <SwiperSlide key={product._id}>
-                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                    <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
-                    <div className="p-4">
-                      <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-                      <p className="text-gray-600 mb-4">{product.description}</p>
-                      <span className="text-blue-600 font-bold">${product.price}</span>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          }
-         
-        </div>
-      </div>
-    </section>
+    <div>FamousProducts</div>
   )
 }
-
-export default FamousProducts

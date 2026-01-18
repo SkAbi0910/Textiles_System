@@ -32,23 +32,13 @@ const Navbar = ({ containerStyles , setmenudownOpen }) => {
 {navLinks.map((link) => (
     <NavLink onClick={() => setmenudownOpen(false)}
     key={link.title} to={link.path} className={({ isActive }) =>
-        `font-medium ${isActive ? " active-link text-blue-600" : "text-gray-700 hover:text-blue-600"}`
+        `font-lg ${isActive ? " active-link text-amber-400" : "text-white hover:text-amber-400"}`
     }>
         {link.title}
     </NavLink>
 ))}
 
-            {/* <div className='hidden md:flex items-center gap-8'>
-                {["Men", "Women", "Kids", "All Products", "Offers"].map(item => (
-                    <NavLink
-                        key={item}
-                        to={`/${item.toLowerCase()}`}
-                        className={({ isActive }) =>
-                            `font-medium ${isActive ? "text-blue-600" : "text-gray-700 hover:text-blue-600"}`}>{item}</NavLink>
-                ))}
-
-            </div> */}
-
+           
 
         </nav>
     )

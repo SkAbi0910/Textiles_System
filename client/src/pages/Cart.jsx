@@ -1,139 +1,88 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FaMinus, FaPlus } from "react-icons/fa6";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart, clearCart } from "../redux/cartSlice";
 import { Link } from "react-router-dom";
-import { ShopContext } from "../context/ShopContext";
-import { IoCloseCircleOutline } from 'react-icons/io5'
-import CartTotal from '../components/CartTotal'
-import Title from "../components/Title";
+
 const Cart = () => {
+  const cartData = useSelector((state) => state.cart.cartData);
+  const dispatch = useDispatch();
 
-    const { navigate, products, currency, cartItems, updateQuantity } = useContext(ShopContext)
-
-    const [cartData, setCartData] = useState([])
-
-
-    const increment = (id, size) => {
-        const currQuantity = cartItems[id][size]
-        updateQuantity(id, size, currQuantity + 1)
+  // Flatten cart items for display
+  const items = [];
+  for (let productId in cartData) {
+    for (let variantKey in cartData[productId]) {
+      const variant = cartData[productId][variantKey]; // this is now an object
+      items.push({
+        productId,
+        ...variant, // size, color, quantity, price, name
+      });
     }
-    const decrement = (id, size) => {
-        const currQuantity = cartItems[id][size]
-        if (currQuantity > 1) {
-            updateQuantity(id, size, currQuantity - 1)
-        }
-    }
+  }
 
+  // Calculate total
+  const getTotal = () => {
+    return items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+  };
 
+  if (items.length === 0)
+    return (
+      <div className="text-center py-20 text-gray-600">
+        Your cart is empty.{" "}
+        <Link to="/dresscollection" className="text-blue-500 underline">
+          Shop Now
+        </Link>
+      </div>
+    );
 
-    useEffect(() => {
-        if (products.length > 0) {
-            const tempData = []
-            for (const itemId in cartItems) {
-                for (const size in cartItems[itemId]) {
-                    if (cartItems[itemId][size] > 0) {
-                        tempData.push({
-                            _id: itemId,
-                            size: size,
-                        })
-                    }
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
+
+      <div className="space-y-4">
+        {items.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex justify-between items-center border rounded-lg p-4"
+          >
+            <div>
+              <h2 className="font-semibold">{item.name}</h2>
+              <p className="text-sm text-gray-500">
+                Size: {item.size} | Color: {item.color}
+              </p>
+              <p className="text-sm text-gray-500">Price: ${item.price}</p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <span className="px-3 py-1 border rounded">{item.quantity}</span>
+              <span className="font-semibold">${(item.price * item.quantity).toFixed(2)}</span>
+              <button
+                onClick={() =>
+                  dispatch(removeFromCart({ id: item.productId, size: item.size, color: item.color }))
                 }
-            }
-            setCartData(tempData)
-        }
-    }, [products, cartItems])
-    return products.length > 0 && cartItems ? (
-        <div className="bg-gray-50 min-h-screen py-16 px-4 md:px-12 lg:px-20">
-
-            <div className="text-center mb-14">
-                <Title text="Shop by Categories" title1={"Shopping"} title2={" Cart"} titleStyle={"text-3xl font-extrabold text-gray-900 mb-10 text-center"} paraStyle={"  text-gray-600 mb-16 text-center"}
-                />
-                <div className="grid grid-cols-3 max-w-5xl mx-auto text-sm text-gray-600">
-
-                    <p className="text-gray-600 mt-2">
-                        Dress Details
-                    </p> <p className="text-gray-600 mt-2">
-                        SubTotal
-                    </p> <p className="text-gray-600 mt-2">
-                        Actions
-                    </p>
-                </div>
+                className="text-red-500 hover:underline text-sm"
+              >
+                Remove
+              </button>
             </div>
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
-                <div className="lg:col-span-2 space-y-6">
-                    {cartData.map((item, i) => {
-                        const product = products.find((product) => product._id === item._id)
-                        const quantity = cartItems[item._id][item.size]
-                        return (
-                            <div key={i} className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          </div>
+        ))}
+      </div>
 
+      {/* Total */}
+      <div className="flex justify-between items-center mt-6 p-4 bg-gray-100 rounded-lg">
+        <span className="text-xl font-bold">Total:</span>
+        <span className="text-xl font-bold">${getTotal()}</span>
+      </div>
 
-
-
-                                <div className="bg-white rounded-2xl shadow-sm p-6 flex gap-6 items-center">
-                                    <img
-                                        src={product.image[0]}
-                                        alt="Dress"
-                                        className="w-24 h-28 object-cover rounded-lg"
-                                    />
-
-
-                                    <div className="flex-1">
-                                        <h4 className="font-semibold text-gray-900">
-                                            {product.name}
-                                        </h4>
-                                        <p className="text-sm text-gray-500">{item.size}</p>
-                                    </div>
-
-
-                                    <div className="flex items-center gap-3 border rounded-lg px-3 py-2">
-                                        <button onClick={() => decrement(item._id, item.size)} className="hover:text-tertiary">
-                                            <FaMinus />
-                                        </button>
-                                        <span className="font-semibold">{quantity}</span>
-                                        <button onClick={() => increment(item._id, item.size)} className="hover:text-tertiary">
-                                            <FaPlus />
-                                        </button>
-                                    </div>
-
-
-
-
-
-
-                                    <p className="font-semibold mt-2">{currency}{product.offerPrice * quantity}</p>
-                                    <button onClick={() => updateQuantity(item._id, item.size, 0)}>
-                                        <IoCloseCircleOutline />
-                                    </button>
-                                </div>
-                            </div>
-
-
-
-                        );
-                    })}
-                </div>
-
-                <div>
-                    <div className="bg-white rounded-2xl shadow-sm p-8 h-fit">
-                        <CartTotal />
-                        <button
-                            onClick={() => navigate('/place_orders')}
-                            className="block text-center mt-8 bg-tertiary text-white py-3 rounded-xl font-semibold hover:opacity-90 transition"
-                        >
-                            Proceed to Checkout
-                        </button>
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-    ) : null;
+      {/* Checkout Button */}
+      <Link
+        to="/place_orders"
+        className="block mt-6 text-center bg-amber-400 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition"
+      >
+        Proceed to Checkout
+      </Link>
+    </div>
+  );
 };
 
-
-export default Cart
+export default Cart;

@@ -1,1 +1,7 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Imprima&display=swap');
+
+/* Make it global */
+body {
+  font-family: 'Imprima', sans-serif;
+}
