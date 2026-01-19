@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 
-const Navbar = ({ containerStyles , setmenudownOpen }) => {
+const Navbar = ({ containerStyles, setmenudownOpen }) => {
 
-    const navLinks =[
-        {path :"/", title : "Home"},
-        {path :"/contact", title : "Contact"},
-        {path:"/dresscollection", title:"Dress Collection"},
-        {path:"/worthiness", title:"Worthiness"}
+    const navLinks = [
+        { path: "/", title: "Home" },
+        { path: "/contact", title: "Contact" },
+        { path: "/dresscollection", title: "Dress Collection" },
+        { path: "/worthiness", title: "Worthiness" }
     ]
-    
-    
     const dropdownRef = useRef();
-
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -24,8 +21,6 @@ const Navbar = ({ containerStyles , setmenudownOpen }) => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [setmenudownOpen]);
-
-    
 
     return (
         <nav className={`${containerStyles}`}>
