@@ -1,36 +1,32 @@
-import React, { useContext  , useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Title from '../components/Title'
-import {Swiper , SwiperSlide} from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { Autoplay } from 'swiper/modules'
 import { ShopContext } from '../context/ShopContext'
 import Item from '../components/Item'
 
-const RelatedDresses = ({product,id}) => {
+const RelatedDresses = ({ product, id }) => {
 
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const {products} = useContext(ShopContext);
+  const { products } = useContext(ShopContext);
 
   useEffect(() => {
-    if(products.length>0){
+    if (products.length > 0) {
       let productsCopy = products.slice()
       productsCopy = productsCopy.filter((item) => item.category == product.category && !id == item._id)
-      setRelatedProducts(productsCopy.slice(0,3))
+      setRelatedProducts(productsCopy.slice(0, 3))
     }
   }, [products]);
-
-  
-
   return (
     <section className="bg-gray-50 py-20">
       <div className="max-w-7xl mx-auto px-6">
-        
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        <Title text="Discover our most popular and highly rated dresses that customers love." title1 ={"Related"} title2={" Products"} titleStyle={"text-3xl font-extrabold text-gray-900 mb-10 text-center"} paraStyle={"  text-gray-600 mb-16 text-center"} />
+          <Title text="Discover our most popular and highly rated dresses that customers love." title1={"Related"} title2={" Products"} titleStyle={"text-3xl font-extrabold text-gray-900 mb-10 text-center"} paraStyle={"  text-gray-600 mb-16 text-center"} />
           {
             <Swiper
               slidesPerView={1}
-              spaceBetween={10}   
+              spaceBetween={10}
               autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,
@@ -43,7 +39,7 @@ const RelatedDresses = ({product,id}) => {
                 },
                 768: {
                   slidesPerView: 3,
-                  spaceBetween: 40, 
+                  spaceBetween: 40,
                 },
                 1024: {
                   slidesPerView: 4,
@@ -67,7 +63,7 @@ const RelatedDresses = ({product,id}) => {
               ))}
             </Swiper>
           }
-         
+
         </div>
       </div>
     </section>

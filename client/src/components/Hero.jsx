@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import hero from '../assets/hero.png'
 
 const Hero = () => {
   return (
@@ -17,14 +18,13 @@ const Hero = () => {
             <Link to="/dresscollection" className="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
               Shop Now
             </Link>
-            <button className="px-6 py-3 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition">
+            <Link to="/dresscollection" className="px-6 py-3 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition">
               View Collection
-            </button>
+            </Link>
           </div>
         </div>
-
         <div>
-          <img src="/assets/hero-image.png" alt="Fashion Showcase" className="w-full rounded-lg shadow-lg" />
+          <img src={hero} alt="Fashion Showcase" className="w-full rounded-lg shadow-lg" />
         </div>
       </div>
     </section>
