@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+import React from 'react'
+// import upload_icon from '../../assets/upload_icons.png'
+=======
 import React, { useState } from 'react'
 import upload_icon from '../../assets/upload_icons.png'
+>>>>>>> e0d65a3f3164ce9e6a016d5acf179538490a6f38
 
 export default function AddProduct() {
 
@@ -70,6 +75,28 @@ export default function AddProduct() {
               <input onChange={(e) => setOfferPrice(e.target.value)} value={offerPrice} type="number" placeholder='10'
                 className="mt-1 w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
 
+<<<<<<< HEAD
+
+                    <label key={index} htmlFor={`images${index}`}
+                     className='rounded overflow-hidden'>
+
+                      <input onChange={(e)=>{
+                          
+                          const updatedFiles = [...files]
+                          updatedFiles[index] = e.target.files[0]
+                          setFiles(updatedFiles)
+
+                      }} 
+                      type = "files" id ={`image${index}`}
+                      hidden
+                      
+                      />
+
+                      {/* <img src = {files[index] ? URL.createObjectURL(files[index]) : upload_icon} alt="uploadArea" width={67} height={67} className='bg-white'/> */}
+                     </label>
+
+                  })
+=======
               />
             </div>
           </div>
@@ -86,6 +113,7 @@ export default function AddProduct() {
                       ? prev.filter(item => item !== size)
                       : [...prev, size]
                   )
+>>>>>>> e0d65a3f3164ce9e6a016d5acf179538490a6f38
                 }
                 className={`px-4 py-1.5 rounded-full border cursor-pointer text-sm transition
                   ${sizes.includes(size)

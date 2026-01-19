@@ -1,34 +1,49 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import hero from '../assets/hero.png'
+import React from "react";
+import { Link } from "react-router-dom";
+import doneImg from '../assets/done.avif';
+
 
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-r from-blue-50 to-pink-50 pt-32 pb-20">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
-       <div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-            Discover Your <span className="text-blue-600">Perfect Style</span>
+    <section
+      className="relative bg-cover bg-center bg-no-repeat pt-39 pb-70"
+      style={{ backgroundImage: `url(${doneImg})` }}
+    >
+    
+      
+
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+        <div>
+          <h1 className="text-4xl md:text-5xl  font-extrabold text-amber-400 leading-tight">
+            Discover Your{" "}
+            <span className="text-slate-50">Perfect Style</span>
           </h1>
-          <p className="mt-4 text-gray-600 text-lg">
-            Explore the latest fashion trends in textiles.  
+
+          <p className="mt-4 text-slate-100 text-lg">
+            Explore the latest fashion trends in textiles.
             Premium quality dresses at affordable prices.
           </p>
+
           <div className="mt-6 flex gap-4">
-            <Link to="/dresscollection" className="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+            <Link
+              to="/collections"
+              className="px-6 py-3 bg-amber-500 text-white rounded-full font-medium hover:bg-amber-600 transition"
+            >
               Shop Now
             </Link>
-            <Link to="/dresscollection" className="px-6 py-3 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition">
+
+            <button className="px-6 py-3 border-2 border-amber-400 text-white rounded-full font-medium hover:bg-amber-50/30 transition">
               View Collection
-            </Link>
+         </button>
           </div>
         </div>
-        <div>
-          <img src={hero} alt="Fashion Showcase" className="w-full rounded-lg shadow-lg" />
-        </div>
+
+        {/* Optional: remove duplicate image, since background covers */}
+        <div className="hidden md:block"></div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

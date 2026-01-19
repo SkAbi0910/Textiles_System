@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+import React, { useContext, useState } from 'react'
+
+=======
 import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../../context/ShopContext';
+>>>>>>> e0d65a3f3164ce9e6a016d5acf179538490a6f38
 
 export default function AdminLogin() {
 

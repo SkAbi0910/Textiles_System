@@ -11,14 +11,12 @@ import bannerImg from '../assets/banner.jpg'
 const Home = () => {
   return (
     <>
-      <Hero />
-      <Categories />
-      <Features />
-      <FamousProducts />
-      <div className='max-w-7xl mx-auto px-6'>
-        <img src={bannerImg} alt="Banner" className="w-full h-auto mt-10 mb-10" />
-      </div>
-      <Blog />
+    <Hero/>
+    <Categories/>
+    {/* <Features/> */}
+    <FamousProducts/>
+    
+    <Blog/>
     </>
   )
 }

@@ -50,13 +50,26 @@ export const listProduct=async(req,res)=>{
 
 }
 
+export const listCategories = async (req ,res) =>{
+    try{
+
+        const categories = await Product.distinct("category");
+        res.status(200).json({success:true , categories});
+    }
+
+    catch(err){
+        res.status(500).json({sucess:false,message:"Error fetching categories"});
+    }
+}
+
 
 
 export const singleProduct=async(req,res)=>{
     try{
 
-const {productId} = req.body;
-const product = await Product.findById(productId);
+const { id } = req.params;
+
+const product = await Product.findById(id);
 res.status(200).json({
     success:true,
     product
