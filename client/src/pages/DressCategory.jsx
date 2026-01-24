@@ -1,17 +1,39 @@
-import React, { useContext, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
-import { ShopContext } from '../context/ShopContext';
-import Item from '../components/Item';
-import Title from '../components/Title';
+import React, { useMemo } from "react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProducts } from "../api/productApi"; // your API
+import Item from "../components/Item";
+import Title from "../components/Title";
 
 const DressCategory = () => {
   const { dresscategory } = useParams();
-  const { products = [] } = useContext(ShopContext) || {};
+
+  const { data: products = [], isLoading, isError } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
 
   const filtered = useMemo(() => {
-    const target = (dresscategory ?? '').toLowerCase();
-    return products.filter(p => (p?.category ?? '').toLowerCase() === target && p.inStock);
+    const target = (dresscategory ?? "").toLowerCase();
+    return products.filter(
+      (p) => (p?.category ?? "").toLowerCase() === target && p.inStock
+    );
   }, [products, dresscategory]);
+
+  if (isLoading) {
+    return (
+      <div className="p-6 text-center text-gray-500">Loading products...</div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-6 text-center text-red-500">
+        Failed to load products.
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white min-h-screen">
@@ -22,10 +44,11 @@ const DressCategory = () => {
         titleStyle="text-4xl font-extrabold text-gray-900 mb-10 text-center mt-20"
         paraStyle="text-gray-600 mb-16 text-center"
       />
+
       <div className="max-w-7xl mx-auto px-6 pb-20">
         {filtered.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {filtered.map(product => (
+            {filtered.map((product) => (
               <Item key={product._id} product={product} />
             ))}
           </div>

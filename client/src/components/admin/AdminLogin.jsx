@@ -1,76 +1,116 @@
-<<<<<<< HEAD
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
+import bgImg from "../../assets/bg-login.jpg";
+import { adminLogin } from "../../api/adminApi";
+import { loginSuccess } from "../../redux/authSlice";
 
-=======
-import React, { useContext, useEffect, useState } from 'react'
-import { ShopContext } from '../../context/ShopContext';
->>>>>>> e0d65a3f3164ce9e6a016d5acf179538490a6f38
+const AdminLogin = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-export default function AdminLogin() {
+  const isAuthenticated = useSelector(
+    (state) => state.auth.isAuthenticated
+  );
 
-  const { isAdmin, setIsAdmin, navigate } = useContext(ShopContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { mutate, isLoading, error } = useMutation({
+    mutationFn: adminLogin,
+    onSuccess: (data) => {
+      dispatch(loginSuccess(data.admin));
+      localStorage.setItem("adminToken", data.token);
+      navigate("/admin/dashboard");
+    },
+  });
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-
-    setIsAdmin(true);
-  }
-
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    mutate({ email, password });
+  };
 
   useEffect(() => {
-
-    if (isAdmin) {
-
-      navigate('/admin/dashboard')
+    if (isAuthenticated) {
+      navigate("/admin/dashboard");
     }
-  }, [isAdmin]);
-
+  }, [isAuthenticated, navigate]);
 
   return (
-    <div className='fixed top-0 bottom-0 left-0 right-0 z-40 flex items-center text-sm text-[80%]'>
-      <form onSubmit={onSubmitHandler} className='flex flex-col gap-4 m-auto items-start p-8 py-12 w-80 sm:w-[352px] rounded-lg shadow-xl border border-gray-200 bg-white'>
-        <h3 className='bold-28 mx-auto mb-3'>
-          <span className='text-secondary captialize'>
-            Admin
-          </span>
-          Login
-        </h3>
+    <section style={{ backgroundImage: `url(${bgImg})` }} className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
 
-        <div className='w-full'>
-          <p className='medium-14'>Email</p>
-          <input
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder='Type here....'
-            className='border border-grey-200 rounded w-full p-2 mt-1 outline-black'
-            required />
-        </div>
+      <div className="flex items-center justify-center bg-slate-100 px-6">
+        <form
+          onSubmit={onSubmitHandler}
+          className="w-full max-w-md bg-white/80 backdrop-blur
+                   p-10 rounded-3xl shadow-2xl"
+        >
 
-        <div className='w-full'>
-          <p className='medium-14'>Password</p>
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            placeholder='Type here....'
-            className='border border-grey-200 rounded w-full p-2 mt-1 outline-black'
-            required />
-        </div>
+          <h3 className="text-3xl font-extrabold text-center mb-2 text-gray-900">
+            <span className="text-amber-500">Admin</span> Login
+          </h3>
+
+          <p className="text-center text-gray-600 text-sm mb-8">
+            Authorized personnel only
+          </p>
 
 
+          {error && (
+            <p className="text-red-500 text-sm text-center mb-4">
+              Login failed. Please check credentials.
+            </p>
+          )}
 
 
-        <button type="submit" className='btn-secondary w-full rounded py-2.5! mt-2'>
+          <div className="mb-5">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email Address
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin@example.com"
+              required
+              className="w-full px-4 py-3 rounded-full border border-gray-300
+                       focus:ring-2 focus:ring-amber-400 outline-none"
+            />
+          </div>
 
-          Login
 
-        </button>
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+              className="w-full px-4 py-3 rounded-full border border-gray-300
+                       focus:ring-2 focus:ring-amber-400 outline-none"
+            />
+          </div>
 
-      </form>
-    </div>
-  )
-}
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full py-3 rounded-full bg-amber-500 text-white
+                     font-semibold hover:bg-amber-600 transition
+                     transform hover:scale-105 disabled:opacity-60"
+          >
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
+
+
+        </form>
+      </div>
+    </section>
+  );
+
+};
+
+export default AdminLogin;

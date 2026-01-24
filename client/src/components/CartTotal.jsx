@@ -1,62 +1,105 @@
-import React, { useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ShopContext } from '../context/ShopContext';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  selectCartAmount,
+  selectCartCount,
+} from "../redux/selectors/cartSelector";
 
 const CartTotal = ({ method, setMethod }) => {
+  const location = useLocation();
+  const isOrderPage = location.pathname.includes("/place_orders");
 
+  const currency = useSelector((state) => state.shop.currency);
+  const deliveryCharges = useSelector(
+    (state) => state.shop.delivery_charges
+  );
 
-  const { currency, getCartAmount, getCartCount, delivery_charges } = useContext(ShopContext)
-  const location = useLocation()
-  const isOrderPage = location.pathname.includes('/place_orders')
+  const cartAmount = useSelector(selectCartAmount);
+  const cartCount = useSelector(selectCartCount);
+
+  const tax = (cartAmount * 2) / 100;
+  const total =
+    cartAmount === 0 ? 0 : cartAmount + deliveryCharges + tax;
 
   return (
     <div className="bg-white rounded-2xl shadow-md p-8 w-full max-w-md mx-auto lg:mx-0">
-
-
-      <h3 className="text-2xl font-semibold mb-6 text-gray-900">Order Summary
-        <span className='text-green-600 font-semibold'>{getCartCount()} Items
-        </span> </h3>
+      <h3 className="text-2xl font-semibold mb-6 text-gray-900">
+        Order Summary{" "}
+        <span className="text-green-600 font-semibold">
+          {cartCount} Items
+        </span>
+      </h3>
 
       <hr />
+
       {isOrderPage && (
-
-
-        <div className="space-y-4 text-gray-700 text-sm">
-          <div className="flex justify-between">
+        <div className="space-y-4 text-gray-700 text-sm mt-4">
+          <div className="flex justify-between items-center">
             <h3>Payment</h3>
-            <div onClick={() => setMethod('COD')} className={`${method === 'COD' ? 'bg-black' : 'bg-white'} cursor-pointer text-xs`}>Cash On Delivery</div>
-            <div onClick={() => setMethod('Stripe')} className={`${method === 'Stripe' ? 'bg-black' : 'bg-white'} cursor-pointer text-xs`}>Stripe</div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setMethod("COD")}
+                className={`px-3 py-1 rounded text-xs cursor-pointer ${
+                  method === "COD"
+                    ? "bg-black text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                Cash On Delivery
+              </button>
+
+              <button
+                onClick={() => setMethod("Stripe")}
+                className={`px-3 py-1 rounded text-xs cursor-pointer ${
+                  method === "Stripe"
+                    ? "bg-black text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                Stripe
+              </button>
+            </div>
           </div>
-
-
-          <hr className="my-2" />
-
+          <hr />
         </div>
       )}
-      <div className="space-y-3">
+
+      <div className="space-y-3 mt-6">
         <div className="flex justify-between">
           <h4>Price</h4>
-          <span>{currency}{getCartAmount()}</span>
+          <span>
+            {currency}
+            {cartAmount.toFixed(2)}
+          </span>
         </div>
+
         <div className="flex justify-between">
           <h4>Shipping Fee</h4>
-          <span className='text-green-600 font-semibold'>
-            {getCartAmount() === 0 ? `${currency}0.00` : `${currency}${delivery_charges}.00`}
+          <span className="text-green-600 font-semibold">
+            {cartAmount === 0
+              ? `${currency}0.00`
+              : `${currency}${deliveryCharges}.00`}
           </span>
         </div>
+
         <div className="flex justify-between">
-          <h4>Tax</h4>
-          <span className='text-green-600 font-semibold'>
-            {currency}{(getCartAmount() * 2) / 100}
+          <h4>Tax (2%)</h4>
+          <span className="text-green-600 font-semibold">
+            {currency}
+            {tax.toFixed(2)}
           </span>
         </div>
+
         <div className="flex justify-between text-lg font-bold text-gray-900">
           <span>Total</span>
           <span>
-            {currency}{getCartAmount() === 0 ? '0.00' : getCartAmount() + delivery_charges + (getCartAmount() * 2) / 100}
+            {currency}
+            {total.toFixed(2)}
           </span>
         </div>
       </div>
+
       <Link
         to="/place_orders"
         className="block mt-6 text-center bg-tertiary text-white py-3 rounded-xl font-semibold hover:opacity-90 transition"
@@ -64,14 +107,12 @@ const CartTotal = ({ method, setMethod }) => {
         Proceed to Checkout
       </Link>
 
-
       <Link
         to="/dresscollection"
         className="block mt-3 text-center text-sm text-gray-500 hover:text-tertiary"
       >
         Continue Shopping
       </Link>
-
     </div>
   );
 };

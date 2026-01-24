@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-import React from 'react'
-// import upload_icon from '../../assets/upload_icons.png'
-=======
+
+
 import React, { useState } from 'react'
 import upload_icon from '../../assets/upload_icons.png'
->>>>>>> e0d65a3f3164ce9e6a016d5acf179538490a6f38
 
 export default function AddProduct() {
 
@@ -32,7 +29,7 @@ export default function AddProduct() {
             Product Name
           </h5>
           <input onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder='Write Product name ....'
-          className="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none" />
+            className="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none" />
         </div>
         <div className="w-full">
           <h5 className="font-medium text-gray-700">
@@ -74,38 +71,35 @@ export default function AddProduct() {
               </h5>
               <input onChange={(e) => setOfferPrice(e.target.value)} value={offerPrice} type="number" placeholder='10'
                 className="mt-1 w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
-
-<<<<<<< HEAD
-
-                    <label key={index} htmlFor={`images${index}`}
-                     className='rounded overflow-hidden'>
-
-                      <input onChange={(e)=>{
-                          
-                          const updatedFiles = [...files]
-                          updatedFiles[index] = e.target.files[0]
-                          setFiles(updatedFiles)
-
-                      }} 
-                      type = "files" id ={`image${index}`}
-                      hidden
-                      
-                      />
-
-                      {/* <img src = {files[index] ? URL.createObjectURL(files[index]) : upload_icon} alt="uploadArea" width={67} height={67} className='bg-white'/> */}
-                     </label>
-
-                  })
-=======
               />
+
+              <label key={index} htmlFor={`images${index}`}
+                className='rounded overflow-hidden'>
+
+                <input onChange={(e) => {
+
+                  const updatedFiles = [...files]
+                  updatedFiles[index] = e.target.files[0]
+                  setFiles(updatedFiles)
+
+                }}
+                  type="files" id={`image${index}`}
+                  hidden
+
+                />
+
+              </label>
+
+
+
             </div>
           </div>
         </div>
         <div>
           <h5 className="font-medium text-gray-700" >Product Sizes</h5>
-         <div className="flex flex-wrap gap-3 mt-2">
-          {["S", "M", "L", "XL", "XXL"].map(size => (
-            <span
+          <div className="flex flex-wrap gap-3 mt-2">
+            {["S", "M", "L", "XL", "XXL"].map(size => (
+              <span
                 key={size}
                 onClick={() =>
                   setSizes(prev =>
@@ -113,7 +107,6 @@ export default function AddProduct() {
                       ? prev.filter(item => item !== size)
                       : [...prev, size]
                   )
->>>>>>> e0d65a3f3164ce9e6a016d5acf179538490a6f38
                 }
                 className={`px-4 py-1.5 rounded-full border cursor-pointer text-sm transition
                   ${sizes.includes(size)
@@ -123,8 +116,8 @@ export default function AddProduct() {
               >
                 {size}
               </span>))}
-         </div>
-           
+          </div>
+
         </div>
         <div className="flex gap-3 mt-2">
           {
@@ -145,7 +138,7 @@ export default function AddProduct() {
           }
         </div>
         <div className="flex items-center gap-2">
-          <input onChange={()=>setPopular(prev => !prev)} type='checkbox' checked={popular} id='popular' className="accent-blue-500"/>
+          <input onChange={() => setPopular(prev => !prev)} type='checkbox' checked={popular} id='popular' className="accent-blue-500" />
           <label htmlFor='popular' className="text-gray-700 cursor-pointer">Add to Popular</label>
         </div>
         <button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2.5 rounded-xl font-semibold transition">Add Product</button>

@@ -7,19 +7,18 @@ const Cart = () => {
   const cartData = useSelector((state) => state.cart.cartData);
   const dispatch = useDispatch();
 
-  // Flatten cart items for display
   const items = [];
   for (let productId in cartData) {
     for (let variantKey in cartData[productId]) {
-      const variant = cartData[productId][variantKey]; // this is now an object
+      const variant = cartData[productId][variantKey];
       items.push({
         productId,
-        ...variant, // size, color, quantity, price, name
+        ...variant,
       });
     }
   }
 
-  // Calculate total
+
   const getTotal = () => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
   };
@@ -68,13 +67,13 @@ const Cart = () => {
         ))}
       </div>
 
-      {/* Total */}
+
       <div className="flex justify-between items-center mt-6 p-4 bg-gray-100 rounded-lg">
         <span className="text-xl font-bold">Total:</span>
         <span className="text-xl font-bold">${getTotal()}</span>
       </div>
 
-      {/* Checkout Button */}
+
       <Link
         to="/place_orders"
         className="block mt-6 text-center bg-amber-400 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition"

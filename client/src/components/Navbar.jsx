@@ -23,19 +23,29 @@ const Navbar = ({ containerStyles, setmenudownOpen }) => {
     }, [setmenudownOpen]);
 
     return (
-        <nav className={`${containerStyles}`}>
-{navLinks.map((link) => (
-    <NavLink onClick={() => setmenudownOpen(false)}
-    key={link.title} to={link.path} className={({ isActive }) =>
-        `font-lg ${isActive ? " active-link text-amber-400" : "text-white hover:text-amber-400"}`
-    }>
-        {link.title}
+        <nav className={`${containerStyles} flex gap-8`}>
+  {navLinks.map((link) => (
+    <NavLink
+      key={link.title}
+      to={link.path}
+      onClick={() => setmenudownOpen(false)}
+      className={({ isActive }) =>
+        `
+        relative font-medium tracking-wide transition-all duration-300
+        ${
+          isActive
+            ? "text-black after:w-full"
+            : "text-amber-400 hover:text-amber-400 after:w-0"
+        }
+        after:content-[''] after:absolute after:left-0 after:-bottom-1
+        `
+      }
+    >
+      {link.title}
     </NavLink>
-))}
+  ))}
+</nav>
 
-           
-
-        </nav>
     )
 }
 

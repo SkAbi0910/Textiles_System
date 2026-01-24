@@ -3,17 +3,27 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
+import orderReducer from "./redux/orderSlice";
+import navigationReducer from "./redux/navigationSlice";
+import cartReducer from "./redux/cartSlice";
+import authReducer from "./redux/authSlice";
+import settingsReducer from "./redux/settingsSlice";
+import searchReducer from "./redux/searchSlice"; 
 import { productsApi } from "./services/productsApi";
-import cartReducer from "./redux/cartSlice"; // ✅ import cart slice
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart"], // ✅ persist only cart
+  whitelist: ["cart"], 
 };
 
 const rootReducer = combineReducers({
-  cart: cartReducer, // ✅ add cart reducer
+  navigation: navigationReducer,
+  cart: cartReducer,
+  auth: authReducer,
+  order: orderReducer,
+  settings: settingsReducer,
+  search: searchReducer, 
   [productsApi.reducerPath]: productsApi.reducer,
 });
 
@@ -28,5 +38,4 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
 setupListeners(store.dispatch);

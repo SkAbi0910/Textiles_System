@@ -1,41 +1,41 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useGetProductsQuery } from "../services/productsApi";
 import { useNavigate } from "react-router-dom";
 import dress1 from "../assets/dress_1.jpg";
 
-export default function Products(){
+export default function Products() {
 
-const navigate = useNavigate();
-const { data ,isLoading ,error } = useGetProductsQuery();
-const products = data?.products || [];
-
-
-
-if(isLoading) return <div className="text-center py-20">Loading...</div>;
-if (error) return <div className="text-center py-20">Error loading products</div>;
-
-const handleclick = (id)=>{
-
-  navigate(`product/${id}`)
-
-}
+  const navigate = useNavigate();
+  const { data, isLoading, error } = useGetProductsQuery();
+  const products = data?.products || [];
 
 
-return(
+
+  if (isLoading) return <div className="text-center py-20">Loading...</div>;
+  if (error) return <div className="text-center py-20">Error loading products</div>;
+
+  const handleclick = (id) => {
+
+    navigate(`product/${id}`)
+
+  }
 
 
-     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Products Grid */}
+  return (
+
+
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products?.map((product) => (
           <div
             key={product._id}
             className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition cursor-pointer"
 
-            onClick={()=>handleclick(product._id)}
+            onClick={() => handleclick(product._id)}
           >
             <img
-              src={dress1} // show first image
+              src={dress1}
               alt={product.name}
               className="w-full h-56 object-cover"
             />
@@ -58,7 +58,7 @@ return(
         ))}
       </div>
     </section>
-)
+  )
 
 
 

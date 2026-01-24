@@ -9,10 +9,10 @@ const Hero = () => {
       className="relative bg-cover bg-center bg-no-repeat pt-39 pb-70"
       style={{ backgroundImage: `url(${doneImg})` }}
     >
-    
-      
 
-      {/* Content */}
+
+
+
       <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
         <div>
           <h1 className="text-4xl md:text-5xl  font-extrabold text-amber-400 leading-tight">
@@ -34,12 +34,12 @@ const Hero = () => {
             </Link>
 
             <button className="px-6 py-3 border-2 border-amber-400 text-white rounded-full font-medium hover:bg-amber-50/30 transition">
-              View Collection
-         </button>
+              Get MemberShip
+            </button>
           </div>
         </div>
 
-        {/* Optional: remove duplicate image, since background covers */}
+
         <div className="hidden md:block"></div>
       </div>
     </section>

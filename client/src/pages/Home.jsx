@@ -14,9 +14,9 @@ const Home = () => {
     <Hero/>
     <Categories/>
     {/* <Features/> */}
-    <FamousProducts/>
+    {/* <FamousProducts/> */}
     
-    <Blog/>
+    {/* <Blog/> */}
     </>
   )
 }

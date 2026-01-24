@@ -20,7 +20,7 @@ export default function ProductSingle() {
   const product = data?.product;
   if (!product) return <div className="py-20 text-center">Product not found</div>;
 
-  // Quantity handlers
+
   const increment = () => {
     if (quantity < 10) setQuantity(quantity + 1);
   };
@@ -28,32 +28,32 @@ export default function ProductSingle() {
     if (quantity > 1) setQuantity(quantity - 1);
   };
 
-  // Add to cart handler
+
   const handleAddToCart = () => {
-  if (!selectedSize || !selectedColor) {
-    alert("Please select a size and color!");
-    return;
-  }
+    if (!selectedSize || !selectedColor) {
+      alert("Please select a size and color!");
+      return;
+    }
 
-  dispatch(
-    addToCart({
-      id: product._id,
-      size: selectedSize,
-      color: selectedColor,
-      quantity,
-      price: product.price,  // add price
-      name: product.name     // add name
-    })
-  );
+    dispatch(
+      addToCart({
+        id: product._id,
+        size: selectedSize,
+        color: selectedColor,
+        quantity,
+        price: product.price,
+        name: product.name
+      })
+    );
 
-  alert("Item added to cart!");
-};
+    alert("Item added to cart!");
+  };
 
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-10">
-      
-      {/* Images */}
+
+
       <div>
         <img
           src={product.image[selectedImage]}
@@ -66,16 +66,15 @@ export default function ProductSingle() {
               key={index}
               src={img}
               alt={`${product.name} ${index + 1}`}
-              className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${
-                selectedImage === index ? "border-blue-500" : "border-gray-300"
-              }`}
+              className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${selectedImage === index ? "border-blue-500" : "border-gray-300"
+                }`}
               onClick={() => setSelectedImage(index)}
             />
           ))}
         </div>
       </div>
 
-      {/* Details */}
+
       <div className="flex flex-col">
         <h1 className="text-3xl font-bold">{product.name}</h1>
         <p className="text-gray-500 mt-1">{product.category}</p>
@@ -101,7 +100,7 @@ export default function ProductSingle() {
 
         <p className="mt-4">{product.description}</p>
 
-        {/* Sizes */}
+
         <div className="mt-4">
           <h3 className="font-semibold mb-2">Available Sizes:</h3>
           <div className="flex gap-2">
@@ -109,9 +108,8 @@ export default function ProductSingle() {
               <span
                 key={idx}
                 onClick={() => setSelectedSize(size)}
-                className={`px-3 py-1 border rounded text-sm cursor-pointer ${
-                  selectedSize === size ? "bg-blue-200 border-blue-500" : ""
-                }`}
+                className={`px-3 py-1 border rounded text-sm cursor-pointer ${selectedSize === size ? "bg-blue-200 border-blue-500" : ""
+                  }`}
               >
                 {size}
               </span>
@@ -119,7 +117,6 @@ export default function ProductSingle() {
           </div>
         </div>
 
-        {/* Colors */}
         <div className="mt-4">
           <h3 className="font-semibold mb-2">Colors:</h3>
           <div className="flex gap-2">
@@ -127,9 +124,8 @@ export default function ProductSingle() {
               <span
                 key={idx}
                 onClick={() => setSelectedColor(color)}
-                className={`w-6 h-6 rounded-full border cursor-pointer ${
-                  selectedColor === color ? "ring-2 ring-blue-500" : ""
-                }`}
+                className={`w-6 h-6 rounded-full border cursor-pointer ${selectedColor === color ? "ring-2 ring-blue-500" : ""
+                  }`}
                 style={{ backgroundColor: color.toLowerCase() }}
               />
             ))}
@@ -142,7 +138,7 @@ export default function ProductSingle() {
           </span>
         )}
 
-        {/* Add to Cart */}
+
         <button
           onClick={handleAddToCart}
           className="mt-6 bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition"
