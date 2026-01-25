@@ -18,7 +18,8 @@ export const adminLogin = async (req, res) => {
                 maxAge: 3600000 
             });
 
-            return res.status(200).json({ message: "Admin Login successful", token });
+            return res.status(200).json({ 
+                admin: { email, isAdmin: true },message: "Admin Login successful", token });
         } else {
             return res.status(401).json({ message: "Invalid admin credentials" });
         }

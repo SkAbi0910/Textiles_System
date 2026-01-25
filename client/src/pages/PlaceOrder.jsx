@@ -64,7 +64,7 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-16 px-4 md:px-12 lg:px-20">
+    <div className="mt-10 bg-gray-50 min-h-screen py-16 px-4 md:px-12 lg:px-20">
       <form onSubmit={onSubmitHandler}>
         <div className="text-center mb-14">
           <Title

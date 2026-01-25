@@ -1,10 +1,23 @@
-export const selectCartItems = (state) => state.cart.items;
+// Convert cartData object → flat array
+export const selectCartItems = (state) => {
+  const cartData = state.cart.cartData || {};
+
+  return Object.entries(cartData).flatMap(([productId, variants]) =>
+    Object.values(variants).map((item) => ({
+      productId,
+      ...item,
+    }))
+  );
+};
 
 export const selectCartCount = (state) =>
-  state.cart.items.reduce((total, item) => total + item.quantity, 0);
+  selectCartItems(state).reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
 export const selectCartAmount = (state) =>
-  state.cart.items.reduce(
+  selectCartItems(state).reduce(
     (total, item) => total + item.price * item.quantity,
     0
-);
+  );

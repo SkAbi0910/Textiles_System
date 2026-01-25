@@ -19,15 +19,15 @@ import DashboardView from './components/admin/DashboardView'
 import PlaceOrder from './pages/PlaceOrder'
 import DressCollection from './pages/DressCollection'
 import DressCategoryCollection from './pages/DressCategoryCollection'
-import { useSelector } from "react-redux";
-
+import { useSelector } from "react-redux"
+import MyOrders from './pages/MyOrders'
 
 function App() {
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   return (
     <main className='overflow-hidden text-tertiary'>
-      {!isAdmin ?? <Header/> }
+      {!isAdmin && <Header/> }
       <Toaster position='top-left' />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -36,15 +36,15 @@ function App() {
          <Route path="/collections/product/:id" element={<ProductSingle/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/place-orders" element={<PlaceOrder />} />
-        {/* <Route path="/my_orders" element={<MyOrders />} /> */}
+        <Route path="/place-orders" element={<PlaceOrder />} /> 
+        <Route path="/my_orders" element={<MyOrders />} />
         {/* <Route path="/loader" element={<Loading />} /> */}
         <Route path="/dresscollection" element={<DressCollection />} />
         <Route path="/worthiness" element={<Worthiness />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/dresscollection/:category" element={<DressCategoryCollection />} />
         {/* <Route path="/dresscollection/:category/:id" element={<DressDetails />} /> */}
-        <Route path="/admin">
+        {/* <Route path="/admin">
           <Route index element={<AdminLogin />} />
 
           
@@ -53,10 +53,12 @@ function App() {
             <Route path="list" element={<ListProduct />} />
             <Route path="orders" element={<Orders />} />
           
-        </Route>
+        </Route> */}
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/view" element={<DashboardView />} />
 
       </Routes>
-      {!isAdmin ?? <Footer /> }
+      {!isAdmin && <Footer /> }
     </main>
   )
 }

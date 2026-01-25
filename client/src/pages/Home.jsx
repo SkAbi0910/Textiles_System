@@ -4,8 +4,7 @@ import Hero from '../components/Hero'
 import Categories from '../components/Categories'
 import Features from '../components/Features'
 import FamousProducts from '../components/FamousProducts'
-import Blog from '../components/Blog'
-import bannerImg from '../assets/banner.jpg'
+import MemberShip from '../components/MemberShip'
 
 
 const Home = () => {
@@ -13,10 +12,10 @@ const Home = () => {
     <>
     <Hero/>
     <Categories/>
-    {/* <Features/> */}
-    {/* <FamousProducts/> */}
     
-    {/* <Blog/> */}
+    <MemberShip/>
+    <Features/>
+    <FamousProducts/>
     </>
   )
 }

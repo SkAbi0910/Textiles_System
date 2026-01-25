@@ -1,11 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const shopSlice = createSlice({
-  name: 'shop',
+  name: "shop",
   initialState: {
-    currency: '$'
+    currency: "₹",
   },
-  reducers: {}
+  reducers: {
+    setCurrency: (state, action) => {
+      state.currency = action.payload;
+    },
+  },
 });
 
+export const { setCurrency } = shopSlice.actions;
 export default shopSlice.reducer;

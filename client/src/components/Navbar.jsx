@@ -7,7 +7,9 @@ const Navbar = ({ containerStyles, setmenudownOpen }) => {
         { path: "/", title: "Home" },
         { path: "/contact", title: "Contact" },
         { path: "/dresscollection", title: "Dress Collection" },
-        { path: "/worthiness", title: "Worthiness" }
+        { path: "/worthiness", title: "Worthiness" }, 
+        { path: "/my_orders", title: "My Orders" },
+        { path: "/place-orders", title: "Place Order" },
     ]
     const dropdownRef = useRef();
     useEffect(() => {

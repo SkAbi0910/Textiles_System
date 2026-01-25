@@ -8,10 +8,10 @@ import { setCurrency } from "../redux/shopSlice";
 
 const MyOrders = () => {
   const dispatch = useDispatch();
-  const orders = useSelector((state) => state.orders.ordersList);
-  const loading = useSelector((state) => state.orders.loading);
-  const currency = useSelector((state) => state.shop.currency || "₹");
-  const user = useSelector((state) => state.user.user);
+const orders = useSelector((state) => state.order.orders);
+const loading = useSelector((state) => state.order.loading);
+const currency = useSelector((state) => state.shop.currency || "₹");
+const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     if (user) {
@@ -20,7 +20,7 @@ const MyOrders = () => {
   }, [dispatch, user]);
 
   return (
-    <div className="px-4 md:px-12 lg:px-20 py-16 bg-gray-50 min-h-screen">
+    <div className="mt-10 px-4 md:px-12 lg:px-20 py-16 bg-gray-50 min-h-screen">
       <div className="mb-12 text-center">
         <Title
           text="Track your orders, view details, and manage your purchases"

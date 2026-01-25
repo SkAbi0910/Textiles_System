@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import doneImg from '../assets/done.avif';
+import Membership from "./MemberShip";
 
 
 const Hero = () => {
@@ -33,7 +34,7 @@ const Hero = () => {
               Shop Now
             </Link>
 
-            <button className="px-6 py-3 border-2 border-amber-400 text-white rounded-full font-medium hover:bg-amber-50/30 transition">
+            <button onClick={()=> <Membership/>} className="px-6 py-3 border-2 border-amber-400 text-white rounded-full font-medium hover:bg-amber-50/30 transition">
               Get MemberShip
             </button>
           </div>

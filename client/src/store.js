@@ -2,8 +2,8 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { setupListeners } from "@reduxjs/toolkit/query";
-
 import orderReducer from "./redux/orderSlice";
+import shopReducer from "./redux/shopSlice";
 import navigationReducer from "./redux/navigationSlice";
 import cartReducer from "./redux/cartSlice";
 import authReducer from "./redux/authSlice";
@@ -22,6 +22,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   auth: authReducer,
   order: orderReducer,
+  shop: shopReducer,
   settings: settingsReducer,
   search: searchReducer, 
   [productsApi.reducerPath]: productsApi.reducer,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: 
+    persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
