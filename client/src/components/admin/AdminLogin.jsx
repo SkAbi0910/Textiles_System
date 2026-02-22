@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import bgImg from "../../assets/bg-login.jpg";
-// import { adminLogin } from "../../api/adminApi";
+import { adminLogin } from "../../api/adminApi";
 import { loginSuccess } from "../../redux/authSlice";
 
 const AdminLogin = () => {

@@ -21,6 +21,7 @@ import DressCollection from './pages/DressCollection'
 import DressCategoryCollection from './pages/DressCategoryCollection'
 import { useSelector } from "react-redux"
 import MyOrders from './pages/MyOrders'
+import Loading from './components/Loading'
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/place-orders" element={<PlaceOrder />} /> 
         <Route path="/my_orders" element={<MyOrders />} />
-        {/* <Route path="/loader" element={<Loading />} /> */}
+        <Route path="/loader" element={<Loading />} />
         <Route path="/dresscollection" element={<DressCollection />} />
         <Route path="/worthiness" element={<Worthiness />} />
         <Route path="/contact" element={<Contact />} />

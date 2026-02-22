@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
   import Title from "../components/Title";
   import Item from "../components/Item";
   import { fetchProducts } from "../api/productApi";
+  import Loading from "../components/Loading";
 
   const DressCollection = () => {
     const searchQuery = useSelector((state) => state.search.query);
@@ -59,17 +60,18 @@ import React, { useState, useEffect, useMemo } from "react";
       window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
     }, [currentPage]);
 
-    if (isLoading) {
-      return <div className="p-6 text-center text-gray-500">Loading products...</div>;
-    }
+   if (isLoading) {
+  return <Loading />;
+}
 
-    if (isError) {
-      return (
-        <div className="p-6 text-center text-red-500">
-          Failed to load products{error?.message ? `: ${error.message}` : "."}
-        </div>
-      );
-    }
+if (isError) {
+  return (
+    <div className="p-6 text-center text-red-500">
+      Failed to load products{error?.message ? `: ${error.message}` : "."}
+    </div>
+  );
+}
+
 
     const start = (currentPage - 1) * productsPerPage;
     const end = currentPage * productsPerPage;
@@ -87,7 +89,7 @@ import React, { useState, useEffect, useMemo } from "react";
   />
 
   <div className="max-w-7xl mx-auto px-6 pb-20">
- =
+ 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
       {filteredProducts.length > 0 ? (
         pageItems.map((product) => (
